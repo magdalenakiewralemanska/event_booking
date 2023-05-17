@@ -20,7 +20,6 @@ public class AbstractEntity {
         this.id = id;
     }
 
-
     @Override
     public int hashCode() {
         if (getId() != null) {

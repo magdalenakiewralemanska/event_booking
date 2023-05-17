@@ -1,5 +1,6 @@
-package io.mkolodziejczyk92.eventplannerapp.data.entity;
+package io.mkolodziejczyk92.eventplannerapp.data.entity.user;
 
+import io.mkolodziejczyk92.eventplannerapp.data.entity.AbstractEntity;
 import io.mkolodziejczyk92.eventplannerapp.data.enums.EAddressType;
 import io.mkolodziejczyk92.eventplannerapp.data.enums.ECountry;
 import io.mkolodziejczyk92.eventplannerapp.data.enums.EVoivodeship;
@@ -13,12 +14,19 @@ import lombok.*;
 @Builder
 @Entity
 @Table(name = "address")
-public class Address extends AbstractEntity{
+public class Address extends AbstractEntity {
 
     private String street;
+
+    @Column(name = "house_number")
     private String houseNumber;
+
+    @Column(name = "apartment_number")
     private String apartmentNumber;
+
+    @Column(name = "zip_code")
     private String zipCode;
+
     private String city;
 
     @Enumerated(EnumType.STRING)
@@ -29,9 +37,10 @@ public class Address extends AbstractEntity{
 
     @Enumerated(EnumType.STRING)
     private EAddressType addressType;
+
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
-    private Client client;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
 
 }
