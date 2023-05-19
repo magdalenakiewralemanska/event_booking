@@ -1,11 +1,10 @@
 package io.mkolodziejczyk92.eventplannerapp.data.entity.user;
 
+import io.mkolodziejczyk92.eventplannerapp.data.model.dto.UserDto;
 import io.mkolodziejczyk92.eventplannerapp.data.entity.Offer;
 import io.mkolodziejczyk92.eventplannerapp.data.entity.UserEvent;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import io.mkolodziejczyk92.eventplannerapp.data.enums.Role;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,8 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "organizers")
+@Table(name = "users")
+@DiscriminatorValue("Organizer")
 public class Organizer extends User {
 
     @Column(name = "company_name")
@@ -31,5 +31,11 @@ public class Organizer extends User {
 
     @OneToMany(mappedBy = "organizer")
     private List<Offer> offers;
+
+    public Organizer(UserDto userDto, String encryptedPassword, List<Role> roles) {
+        super(userDto, encryptedPassword, roles);
+        this.setCompanyName(userDto.getCompanyName());
+        this.setRegon(userDto.getRegon());
+    }
 
 }
