@@ -41,4 +41,8 @@ public class Offer extends AbstractEntity{
     @OneToMany(mappedBy = "offer")
     private List<WeekSchedule> availableDaysAndHours;
 
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    private Address address;
+
 }
