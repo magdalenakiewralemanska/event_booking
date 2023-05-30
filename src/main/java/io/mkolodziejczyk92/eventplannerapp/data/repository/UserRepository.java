@@ -1,6 +1,6 @@
 package io.mkolodziejczyk92.eventplannerapp.data.repository;
 
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.User;
+import io.mkolodziejczyk92.eventplannerapp.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

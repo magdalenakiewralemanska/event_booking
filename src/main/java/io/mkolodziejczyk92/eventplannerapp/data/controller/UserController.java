@@ -1,8 +1,7 @@
 package io.mkolodziejczyk92.eventplannerapp.data.controller;
 
 import io.mkolodziejczyk92.eventplannerapp.data.model.dto.UserDto;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.Customer;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.Organizer;
+import io.mkolodziejczyk92.eventplannerapp.data.entity.Customer;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.EmailExistException;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.ExceptionHandle;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.UserNotFoundException;
@@ -31,9 +30,4 @@ public class UserController extends ExceptionHandle {
         return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 
-    @PostMapping("/registerOrganizer")
-    public ResponseEntity<Organizer> saveNewUserOrganizer(@RequestBody UserDto userDto) throws UserNotFoundException, EmailExistException, UsernameExistException {
-        Organizer organizer = userService.registerNewOrganizer(userDto);
-        return new ResponseEntity<>(organizer, HttpStatus.OK);
-    }
 }

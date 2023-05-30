@@ -6,35 +6,33 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "packages")
-public class OfferPackage extends AbstractEntity{
+@Table(name = "package")
+public class OfferPackage {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String title;
-
     private String description;
-
-    private double price;
-
-    private int duration;
-
-    @Column(name = "max_amount_of_people")
-    private int maxAmountOfPeople;
-
-    @Column(name = "is_Own_Food_Available")
-    private boolean isOwnFoodAvailable;
-
-    @Column(name = "is_Own_Drink_Available")
-    private boolean isOwnDrinkAvailable;
-
+    private BigDecimal price;
     private String specials;
 
-    @Column(name = "other_details")
-    private String otherDetails;
+    @Column(name = "max_amount_of_people")
+    private Integer maxAmountOfPeople;
+
+    @Column(name = "is_own_food_available")
+    private Boolean isOwnFoodAvailable;
+
+    @Column(name = "is_own_drink_available")
+    private Boolean isOwnDrinkAvailable;
 
     @ManyToOne
     @JoinColumn(name = "offer_id")

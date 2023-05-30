@@ -1,10 +1,7 @@
 package io.mkolodziejczyk92.eventplannerapp.data.model.dto;
 
 import io.mkolodziejczyk92.eventplannerapp.data.entity.Offer;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.UserEvent;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.Customer;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.Organizer;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.User;
+import io.mkolodziejczyk92.eventplannerapp.data.entity.User;
 import lombok.*;
 
 import java.util.List;
@@ -25,7 +22,6 @@ public class UserDto {
     private String password;
     private String companyName;
     private String regon;
-    private List<UserEvent> userEvents;
     private List<Offer> offers;
 
     public UserDto(User user) {
@@ -35,16 +31,5 @@ public class UserDto {
         this.setPhoneNumber(user.getPhoneNumber());
     }
 
-    public UserDto(Organizer organizer) {
-        this((User) organizer);
-        this.setCompanyName(organizer.getCompanyName());
-        this.setRegon(organizer.getRegon());
-    }
-
-    public UserDto(Customer customer) {
-        this((User) customer);
-        this.setFirstName(customer.getFirstName());
-        this.setLastName(customer.getLastName());
-    }
 
 }
