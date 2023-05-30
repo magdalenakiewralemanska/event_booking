@@ -1,7 +1,11 @@
 package io.mkolodziejczyk92.eventplannerapp.data.entity;
 
+import io.mkolodziejczyk92.eventplannerapp.data.enums.EAddressType;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -9,9 +13,14 @@ import lombok.*;
 @Setter
 @Entity
 @Table(name = "address")
-public class Address extends AbstractEntity {
+public class Address {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String street;
+    private String city;
 
     @Column(name = "house_number")
     private String houseNumber;
@@ -22,10 +31,13 @@ public class Address extends AbstractEntity {
     @Column(name = "zip_code")
     private String zipCode;
 
-    private String city;
+    @Enumerated(EnumType.STRING)
+    private EAddressType eAddressType;
 
-    @OneToOne
-    @JoinColumn(name = "offer_id", nullable = false)
+    @OneToOne(mappedBy = "address")
+    private Customer customer;
+
+    @OneToOne(mappedBy = "address")
     private Offer offer;
 
 

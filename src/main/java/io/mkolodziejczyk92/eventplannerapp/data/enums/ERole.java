@@ -3,10 +3,11 @@ package io.mkolodziejczyk92.eventplannerapp.data.enums;
 import lombok.Getter;
 
 @Getter
-public enum Role {
+public enum ERole {
 
     ADMIN,
     CUSTOMER,
-    ORGANIZER
+    USER
+
 
 }

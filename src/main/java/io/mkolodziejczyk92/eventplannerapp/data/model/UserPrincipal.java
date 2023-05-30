@@ -1,6 +1,6 @@
 package io.mkolodziejczyk92.eventplannerapp.data.model;
 
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.User;
+import io.mkolodziejczyk92.eventplannerapp.data.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,7 @@
 package io.mkolodziejczyk92.eventplannerapp.data.controller;
 
 import io.mkolodziejczyk92.eventplannerapp.data.constant.SecurityConstant;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.User;
+import io.mkolodziejczyk92.eventplannerapp.data.entity.User;
 import io.mkolodziejczyk92.eventplannerapp.data.model.UserPrincipal;
 import io.mkolodziejczyk92.eventplannerapp.data.security.token.JwtProvider;
 import io.mkolodziejczyk92.eventplannerapp.data.service.impl.UserPrincipalService;

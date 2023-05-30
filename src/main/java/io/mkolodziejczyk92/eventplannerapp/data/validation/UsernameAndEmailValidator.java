@@ -1,7 +1,8 @@
 package io.mkolodziejczyk92.eventplannerapp.data.validation;
 
+
 import io.mkolodziejczyk92.eventplannerapp.data.constant.UserServicesConstant;
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.User;
+import io.mkolodziejczyk92.eventplannerapp.data.entity.User;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.EmailExistException;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.UserNotFoundException;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.UsernameExistException;

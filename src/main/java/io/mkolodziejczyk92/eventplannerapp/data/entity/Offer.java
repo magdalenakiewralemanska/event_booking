@@ -1,12 +1,12 @@
 package io.mkolodziejczyk92.eventplannerapp.data.entity;
 
-import io.mkolodziejczyk92.eventplannerapp.data.entity.user.Organizer;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @NoArgsConstructor
@@ -14,22 +14,26 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "offers")
-public class Offer extends AbstractEntity{
+@Table(name = "offer")
+public class Offer {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String name;
+    private String description;
+    private LocalDate date;
+    private Boolean availability;
+
+    @Column(name = "starting_time")
+    private String startingTime;
 
     @Column(name = "min_age")
     private int minAge;
 
     @Column(name = "max_age")
     private int maxAge;
-
-    private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "organizer_id")
-    private Organizer organizer;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
@@ -38,11 +42,11 @@ public class Offer extends AbstractEntity{
     @OneToMany(mappedBy = "offer")
     private List<OfferPackage> offerPackages;
 
-    @OneToMany(mappedBy = "offer")
-    private List<WeekSchedule> availableDaysAndHours;
-
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 }
