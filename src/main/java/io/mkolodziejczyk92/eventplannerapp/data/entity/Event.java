@@ -6,8 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -20,9 +18,9 @@ public class Event{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private String eventType;
 
-    @OneToMany(mappedBy = "event")
-    private List<Offer> offers;
+    private String description;
+
 
 }
