@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -37,8 +39,8 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Customer customer;
 
-    @OneToOne(mappedBy = "address")
-    private Offer offer;
+    @OneToMany(mappedBy = "address")
+    private Set<Offer> offer;
 
 
 }
