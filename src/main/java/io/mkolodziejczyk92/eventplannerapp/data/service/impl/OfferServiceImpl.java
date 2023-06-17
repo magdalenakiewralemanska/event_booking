@@ -46,9 +46,7 @@ public class OfferServiceImpl implements OfferService {
     public void updateOffer(Long id, OfferDto offerDto) {
 
         Optional<Offer> offerOptional = repository.findById(id);
-        offerOptional.ifPresentOrElse(offer -> {
-            repository.save(offerMapper.mapToOffer(offerDto));
-        }, () -> {
+        offerOptional.ifPresentOrElse(offer -> repository.save(offerMapper.mapToOffer(offerDto)), () -> {
             throw new EntityNotFoundException("Entity id: " + id + " not found");
         });
     }

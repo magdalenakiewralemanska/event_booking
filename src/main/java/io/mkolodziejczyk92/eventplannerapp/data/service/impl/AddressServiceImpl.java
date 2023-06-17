@@ -1,7 +1,6 @@
 package io.mkolodziejczyk92.eventplannerapp.data.service.impl;
 
 import io.mkolodziejczyk92.eventplannerapp.data.entity.Address;
-import io.mkolodziejczyk92.eventplannerapp.data.enums.AddressType;
 import io.mkolodziejczyk92.eventplannerapp.data.mapper.AddressMapperImpl;
 import io.mkolodziejczyk92.eventplannerapp.data.model.dto.AddressDto;
 import io.mkolodziejczyk92.eventplannerapp.data.repository.AddressRepository;
