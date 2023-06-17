@@ -19,6 +19,7 @@ public class OfferDto {
     private String description;
     private Long eventId;
     private String organizer;
-    private String contact;
-    private Address address;
+    private String contactEmail;
+    private String contactPhone;
+    private AddressDto address;
 }
