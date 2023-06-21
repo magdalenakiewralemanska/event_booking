@@ -7,6 +7,7 @@ import io.mkolodziejczyk92.eventplannerapp.data.enums.Role;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.EmailExistException;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.UserNotFoundException;
 import io.mkolodziejczyk92.eventplannerapp.data.exception.UsernameExistException;
+import io.mkolodziejczyk92.eventplannerapp.data.mapper.UserMapper;
 import io.mkolodziejczyk92.eventplannerapp.data.model.dto.AddressDto;
 import io.mkolodziejczyk92.eventplannerapp.data.model.dto.UserDto;
 import io.mkolodziejczyk92.eventplannerapp.data.repository.UserRepository;
@@ -26,12 +27,15 @@ public class UserServiceImpl implements UserService {
     private final UsernameAndEmailValidator validator;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    private final UserMapper userMapper;
+
     public UserServiceImpl(UserRepository repository, AddressService addressService, UsernameAndEmailValidator validator,
-                           BCryptPasswordEncoder passwordEncoder) {
+                           BCryptPasswordEncoder passwordEncoder, UserMapper userMapper) {
         this.repository = repository;
         this.addressService = addressService;
         this.validator = validator;
         this.passwordEncoder = passwordEncoder;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -54,6 +58,11 @@ public class UserServiceImpl implements UserService {
         }
         user.setUserEvents(userDto.getUserEvents());
         repository.save(user);
+    }
+
+    public UserDto findUserByUsername(String username){
+        User currentUser = repository.findUserByUsername(username);
+        return userMapper.mapToUserDto(currentUser);
     }
 
 }

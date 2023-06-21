@@ -1,6 +1,5 @@
 package io.mkolodziejczyk92.eventplannerapp.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,7 +28,6 @@ public class User {
 
     private String email;
 
-    @JsonIgnore
     private String password;
 
     private String role;
@@ -40,7 +38,7 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     private Address address;
 
     @OneToMany(mappedBy = "user")
