@@ -5,13 +5,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@AllArgsConstructor
+import java.time.LocalTime;
+
 @Getter
 @Setter
-public class EventDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class TimePeriodDto {
 
     private Long id;
-    private String name;
-    private String picturePath;
+
+    private LocalTime startHour;
+    private LocalTime endHour;
+    private Long dayScheduleId;
 }

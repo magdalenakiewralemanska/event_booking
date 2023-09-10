@@ -38,6 +38,8 @@ public class LoginController {
         UserDto loggedUser = userMapper.mapToUserDto(loginUser);
         UserPrincipal userPrincipal = new UserPrincipal(loginUser);
         HttpHeaders headers = getHeader(userPrincipal);
+        System.out.println(headers);
+        System.out.println(loggedUser);
         return new ResponseEntity<>(loggedUser, headers, HttpStatus.OK);
     }
 

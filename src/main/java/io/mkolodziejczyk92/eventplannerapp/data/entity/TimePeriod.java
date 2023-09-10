@@ -6,27 +6,25 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
+import java.time.LocalTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "event")
-public class Event{
+@Table(name = "time_periods")
+public class TimePeriod {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private LocalTime startHour;
+    private LocalTime endHour;
 
-    @Column(name = "picture_path", columnDefinition = "LONGBLOB")
-    private String picturePath;
-
-    @OneToMany(mappedBy = "event")
-    private List<Offer> offers;
-
+    @ManyToOne()
+    @JoinColumn(name = "daySchedule_id")
+    private DaySchedule daySchedule;
 
 }

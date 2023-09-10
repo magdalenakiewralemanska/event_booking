@@ -1,5 +1,6 @@
 package io.mkolodziejczyk92.eventplannerapp.data.service;
 
+import io.mkolodziejczyk92.eventplannerapp.data.entity.Event;
 import io.mkolodziejczyk92.eventplannerapp.data.model.dto.EventDto;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface EventService {
     void updateEvent(EventDto eventDto);
 
     List<EventDto> getAllEvents();
+
+    Event findEventById(Long id);
 
 }

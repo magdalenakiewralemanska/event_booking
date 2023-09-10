@@ -36,6 +36,7 @@ public class OfferPackageMapperImpl implements OfferPackageMapper{
         offerPackageDto.setSpecials( offerPackage.getSpecials() );
         offerPackageDto.setOtherDetails(offerPackage.getOtherDetails());
         offerPackageDto.setOfferId( offerPackage.getOffer().getId());
+        offerPackageDto.setPicturePath(offerPackage.getPicturePath());
 
         return offerPackageDto;
     }
@@ -58,6 +59,7 @@ public class OfferPackageMapperImpl implements OfferPackageMapper{
         offerPackage.setSpecials( offerPackageDto.getSpecials() );
         offerPackage.setOtherDetails(offerPackageDto.getOtherDetails());
         offerPackage.setOffer(offerRepository.findById(offerPackageDto.getOfferId()).get());
+        offerPackage.setPicturePath(offerPackageDto.getPicturePath());
 
         return offerPackage;
     }

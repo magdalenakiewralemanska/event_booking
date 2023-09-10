@@ -22,7 +22,10 @@ public class UsernameAndEmailValidator {
     public User checkThatNewUsernameAndEmailNotRepeat(String currentUsername, String newUsername, String newEmail)
             throws UserNotFoundException, UsernameExistException, EmailExistException {
         if(StringUtils.isNotBlank(currentUsername)) {
-            return checkThatUserExists(currentUsername);
+            User currentUser = checkThatUserExists(currentUsername);
+            checkThatUsernameNotRepeatForUpdate(newUsername, currentUser);
+            checkThatEmailNotRepeatForUpdate(newEmail, currentUser);
+            return currentUser;
         } else {
             checkThatUsernameNotRepeatForRegistration(newUsername);
             checkThatEmailNotRepeatForRegistration(newEmail);
@@ -40,6 +43,20 @@ public class UsernameAndEmailValidator {
     private void checkThatUsernameNotRepeatForRegistration(String newUsername) throws UsernameExistException {
         User userByNewUsername = userRepository.findUserByUsername(newUsername);
         if(userByNewUsername != null) {
+            throw new UsernameExistException(UserServicesConstant.USERNAME_ALREADY_EXISTS);
+        }
+    }
+
+    private void checkThatEmailNotRepeatForUpdate(String newEmail, User currentUser) throws EmailExistException {
+        User userByNewEmail = userRepository.findUserByEmail(newEmail);
+        if(userByNewEmail != null && !currentUser.getId().equals(userByNewEmail.getId())) {
+            throw new EmailExistException(UserServicesConstant.EMAIL_ALREADY_EXISTS);
+        }
+    }
+
+    private void checkThatUsernameNotRepeatForUpdate(String newUsername, User currentUser) throws UsernameExistException {
+        User userByNewUsername = userRepository.findUserByUsername(newUsername);
+        if(userByNewUsername != null && !currentUser.getId().equals(userByNewUsername.getId())) {
             throw new UsernameExistException(UserServicesConstant.USERNAME_ALREADY_EXISTS);
         }
     }

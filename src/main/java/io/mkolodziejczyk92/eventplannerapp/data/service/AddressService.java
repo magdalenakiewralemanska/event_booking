@@ -8,4 +8,6 @@ public interface AddressService {
 
     void deleteAddress(Long id);
 
+    Address updateAddress(AddressDto addressDto);
+
 }

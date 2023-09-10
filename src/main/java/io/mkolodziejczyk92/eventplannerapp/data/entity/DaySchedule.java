@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @NoArgsConstructor
@@ -13,20 +14,20 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "event")
-public class Event{
+@Table(name = "day_schedules")
+public class DaySchedule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
+    private Date date;
 
-    @Column(name = "picture_path", columnDefinition = "LONGBLOB")
-    private String picturePath;
+    @OneToMany(mappedBy = "daySchedule", cascade = CascadeType.ALL)
+    private List<TimePeriod> workingHours;
 
-    @OneToMany(mappedBy = "event")
-    private List<Offer> offers;
+    @ManyToOne()
+    @JoinColumn(name = "offer_id")
 
-
+    private Offer offer;
 }

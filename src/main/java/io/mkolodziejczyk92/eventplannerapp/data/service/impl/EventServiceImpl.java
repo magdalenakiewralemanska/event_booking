@@ -22,10 +22,9 @@ public class EventServiceImpl implements EventService {
     }
 
     public EventDto createEvent(EventDto eventDto) {
-        Event event = new Event();
-        event.setName(eventDto.getName());
+        Event event = eventMapper.mapToEvent(eventDto);
         repository.save(event);
-        return new EventDto(event.getId(), event.getName());
+        return eventMapper.mapToEventDto(event);
     }
 
     public void deleteEvent(EventDto eventDto) {
@@ -38,6 +37,7 @@ public class EventServiceImpl implements EventService {
         Optional<Event> eventOptional = repository.findById(id);
         eventOptional.ifPresentOrElse(event -> {
             event.setName(eventDto.getName());
+            event.setPicturePath(eventDto.getPicturePath());
             repository.save(event);
         }, () -> {
             throw new EntityNotFoundException("Entity id: " + id + " not found");
@@ -46,5 +46,11 @@ public class EventServiceImpl implements EventService {
 
     public List<EventDto> getAllEvents() {
         return eventMapper.mapToEventDtoList(repository.findAll());
+    }
+
+    @Override
+    public Event findEventById(Long id) {
+        Optional<Event> eventOptional = repository.findById(id);
+        return eventOptional.orElseThrow(() -> new EntityNotFoundException("Event not found"));
     }
 }

@@ -5,6 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -26,7 +27,7 @@ public class AuthorizationFilter extends OncePerRequestFilter {
     }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+    protected void doFilterInternal(HttpServletRequest request, @NotNull HttpServletResponse response, @NotNull FilterChain filterChain)
             throws ServletException, IOException {
         if(request.getMethod().equals(SecurityConstant.HTTP_METHODS)){
             response.setStatus(HttpStatus.OK.value());
@@ -37,6 +38,10 @@ public class AuthorizationFilter extends OncePerRequestFilter {
                 return;
             }
             setContext(request, authHeader);
+            if (SecurityContextHolder.getContext().getAuthentication() == null) {
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token expired");
+                return;
+            }
         }
         filterChain.doFilter(request, response);
     }

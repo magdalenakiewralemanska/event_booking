@@ -10,5 +10,10 @@ import org.springframework.stereotype.Service;
 public interface UserService {
     void registerUser(UserDto userDto) throws UserNotFoundException, UsernameExistException, EmailExistException;
     UserDto findUserByUsername(String username);
+    void updateUser(Long id, UserDto userDto )
+            throws UserNotFoundException, EmailExistException, UsernameExistException;
+
+    void deleteUser(Long id);
+    void updateUserPassword(UserDto userDto );
 
 }

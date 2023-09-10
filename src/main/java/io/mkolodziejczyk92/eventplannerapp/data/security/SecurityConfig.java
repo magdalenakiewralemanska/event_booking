@@ -47,7 +47,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().authorizeHttpRequests().requestMatchers(SecurityConstant.PUBLIC_URLS).permitAll()
+                .and().authorizeHttpRequests()
+                .requestMatchers(SecurityConstant.PUBLIC_URLS).permitAll()
+                .requestMatchers(SecurityConstant.ADMIN_URLS).hasRole("ADMIN")
+                .requestMatchers(SecurityConstant.USER_URLS).hasRole("USER")
                 .anyRequest().authenticated()
                 .and().exceptionHandling().accessDeniedHandler(accessDeniedMessage)
                 .authenticationEntryPoint(forbiddenMessage)

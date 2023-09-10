@@ -9,8 +9,14 @@ public class SecurityConstant {
     public static final String HTTP_METHODS = "OPTIONS";
     public static final String FORBIDDEN = "You have to log in first";
     public static final String ACCESS_DENIED = "Your permissions are insufficient";
-    public static final String[] PUBLIC_URLS = {"/user/login", "/user/registration", "/events",
-            "/events/*/offers/*", "/events/*/offers", "/offers/*", "/packageDetails/*", "/swagger-ui.html", "/swagger-ui/**",
-    "/v3/api-docs/**", "/package", "package/{id}"};
+    public static final String[] PUBLIC_URLS = {"/user/login", "/user/registration", "user/details/{username}", "/events",
+            "/events/*/offers/{offerId}", "/events/*/offers", "/offers/*", "/packageDetails/*", "/swagger-ui.html", "/swagger-ui/**",
+            "/v3/api-docs/**", "/package", "package/{id}", "user/update/*", "/daySchedule/{offerId}", "/orders/*", "/orders/list/{userId}",
+            "/events/*/offers/update/*", "/user/{userId}"};
+
+
+    public static final String[] USER_URLS = {"user/details/*", "user/update/*", "/orders/*", "/orders/list/{userId}"};
+    public static final String[] ADMIN_URLS = {"user/details/*", "/swagger-ui.html", "/swagger-ui/**",
+            "/v3/api-docs/**", "/package", "package/{id}", "user/update/*", "/orders/*", "/orders/list/{userId}"};
     public static final String TOKEN_HEADER = "Jwt-Token";
 }

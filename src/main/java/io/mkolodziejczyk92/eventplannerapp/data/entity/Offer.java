@@ -21,6 +21,8 @@ public class Offer {
     private Long id;
 
     private String name;
+
+    @Column(length = 10000)
     private String description;
     private String organizer;
     private String contactEmail;
@@ -32,6 +34,9 @@ public class Offer {
     @Column(name = "max_age")
     private int maxAge;
 
+    @Column(name = "picture_path", columnDefinition = "BLOB")
+    private String picturePath;
+
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
@@ -39,7 +44,13 @@ public class Offer {
     @OneToMany(mappedBy = "offer")
     private List<OfferPackage> offerPackages;
 
-    @OneToOne
+    @OneToOne()
     private Address address;
+
+    @OneToMany(mappedBy = "offer")
+    private List<DaySchedule> weekSchedule;
+
+    @OneToMany(mappedBy = "offer")
+    private List<Order> orders;
 
 }

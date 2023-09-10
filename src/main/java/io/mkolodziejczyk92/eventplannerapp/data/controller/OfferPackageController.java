@@ -15,7 +15,7 @@ public class OfferPackageController {
         this.packageService = packageService;
     }
 
-    @GetMapping("offers/{offerId}")
+    @GetMapping("/offers/{offerId}")
     public List<OfferPackageDto> getPackages(@PathVariable Long offerId){
         return packageService.getAllOfferPackagesByOfferId(offerId);
     }

@@ -59,6 +59,7 @@ public class OfferPackageServiceImpl implements OfferPackageService {
             offerPackage.setMaxAmountOfPeople(offerPackageDto.getMaxAmountOfPeople());
             offerPackage.setIsOwnDrinkAvailable(offerPackageDto.getIsOwnDrinkAvailable());
             offerPackage.setIsOwnFoodAvailable(offerPackageDto.getIsOwnFoodAvailable());
+            offerPackage.setPicturePath(offerPackageDto.getPicturePath());
             repository.save(offerPackage);
         }, () -> {
             throw new EntityNotFoundException("Entity id: " + id + " not found");

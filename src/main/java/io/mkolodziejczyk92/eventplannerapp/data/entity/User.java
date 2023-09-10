@@ -38,10 +38,16 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(name = "background_picture_path", columnDefinition = "BLOB")
+    private String backgroundPicturePath;
+
+    @Column(name = "profile_picture_path", columnDefinition = "BLOB")
+    private String profilePicturePath;
+
     @OneToOne
     private Address address;
 
     @OneToMany(mappedBy = "user")
-    private List<UserEvent> userEvents;
+    private List<Order> orders;
 
 }

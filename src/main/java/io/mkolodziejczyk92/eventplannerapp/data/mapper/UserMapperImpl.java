@@ -1,6 +1,7 @@
 package io.mkolodziejczyk92.eventplannerapp.data.mapper;
 
 import io.mkolodziejczyk92.eventplannerapp.data.entity.User;
+import io.mkolodziejczyk92.eventplannerapp.data.enums.Role;
 import io.mkolodziejczyk92.eventplannerapp.data.model.dto.UserDto;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,10 @@ public class UserMapperImpl implements UserMapper{
         userDto.setEmail( user.getEmail());
         userDto.setUsername(user.getUsername());
         userDto.setPhoneNumber(user.getPhoneNumber());
+        userDto.setRole(Role.valueOf(user.getRole()));
+        userDto.setBackgroundPicturePath(user.getBackgroundPicturePath());
         userDto.setAddress( addressMapper.mapToAddressDto(user.getAddress()) );
+        userDto.setProfilePicturePath(user.getProfilePicturePath());
         return userDto;
     }
 
@@ -46,6 +50,8 @@ public class UserMapperImpl implements UserMapper{
         user.setLastName(userDto.getLastName());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setAddress(addressMapper.mapToAddress(userDto.getAddress()));
+        user.setBackgroundPicturePath(userDto.getBackgroundPicturePath());
+        user.setProfilePicturePath(userDto.getProfilePicturePath());
 
         return user;
     }

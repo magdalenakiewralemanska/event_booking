@@ -19,6 +19,7 @@ public class EventMapperImpl implements EventMapper{
 
         eventDto.setId( event.getId() );
         eventDto.setName( event.getName() );
+        eventDto.setPicturePath(event.getPicturePath());
 
         return eventDto;
     }
@@ -33,6 +34,7 @@ public class EventMapperImpl implements EventMapper{
 
         event.setId( eventDto.getId() );
         event.setName( eventDto.getName() );
+        event.setPicturePath(eventDto.getPicturePath());
 
         return event;
     }

@@ -31,11 +31,15 @@ public class OfferController {
         offerService.createOffer(offerDto);
     }
 
-    @PutMapping("{offerId}")
+    @PutMapping("/{offerId}")
     public void updateOffer(@RequestBody OfferDto offerDto, @PathVariable Long offerId){
-        offerService.updateOffer(offerId, offerDto);
+        offerService.updateFullOffer(offerId, offerDto);
     }
 
+    @PutMapping("/update/{offerId}")
+    public void updateOfferWithoutWeekSchedule(@RequestBody OfferDto offerDto, @PathVariable Long offerId){
+        offerService.updateOfferWithoutWeekSchedule(offerId, offerDto);
+    }
     @DeleteMapping("{offerId}")
     public void deleteOffer(@PathVariable Long offerId){
         offerService.deleteOffer(offerId);

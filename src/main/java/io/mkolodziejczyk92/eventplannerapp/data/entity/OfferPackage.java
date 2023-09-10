@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
@@ -39,8 +41,14 @@ public class OfferPackage {
     @Column(name = "is_own_drink_available")
     private Boolean isOwnDrinkAvailable;
 
+    @Column(name = "picture_path", columnDefinition = "BLOB")
+    private String picturePath;
+
     @ManyToOne
     @JoinColumn(name = "offer_id")
     private Offer offer;
+
+    @OneToMany(mappedBy = "offerPackage")
+    private List<Order> order;
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class OfferMapperImpl implements OfferMapper {
@@ -14,9 +15,12 @@ public class OfferMapperImpl implements OfferMapper {
     private final EventRepository eventRepository;
     private final AddressMapperImpl addressMapper;
 
-    public OfferMapperImpl(EventRepository eventRepository, AddressMapperImpl addressMapper) {
+    private final DayScheduleMapper dayScheduleMapper;
+
+    public OfferMapperImpl(EventRepository eventRepository, AddressMapperImpl addressMapper, DayScheduleMapper dayScheduleMapper) {
         this.eventRepository = eventRepository;
         this.addressMapper = addressMapper;
+        this.dayScheduleMapper = dayScheduleMapper;
     }
 
     @Override
@@ -37,6 +41,8 @@ public class OfferMapperImpl implements OfferMapper {
         offerDto.setContactPhone(offer.getContactPhone());
         offerDto.setEventId( offer.getEvent().getId());
         offerDto.setAddress( addressMapper.mapToAddressDto(offer.getAddress()) );
+        offerDto.setPicturePath(offer.getPicturePath());
+        offerDto.setWeekSchedule(offer.getWeekSchedule().stream().map(dayScheduleMapper::mapToDayScheduleDto).collect(Collectors.toList()));
 
         return offerDto;
     }
@@ -55,8 +61,9 @@ public class OfferMapperImpl implements OfferMapper {
         offer.setOrganizer(offerDto.getOrganizer());
         offer.setContactEmail(offerDto.getContactEmail());
         offer.setContactPhone(offerDto.getContactPhone());
+
         offer.setEvent(eventRepository.findById(offerDto.getEventId()).get());
-        offer.setAddress(addressMapper.mapToAddress(offerDto.getAddress()));
+        offer.setPicturePath(offerDto.getPicturePath());
 
         return offer;
     }

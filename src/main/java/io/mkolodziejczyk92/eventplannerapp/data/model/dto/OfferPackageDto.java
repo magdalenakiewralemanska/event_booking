@@ -22,4 +22,5 @@ public class OfferPackageDto {
     private String specials;
     private String otherDetails;
     private Long offerId;
+    private String picturePath;
 }

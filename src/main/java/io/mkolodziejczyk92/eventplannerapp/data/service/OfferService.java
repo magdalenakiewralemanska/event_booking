@@ -8,7 +8,9 @@ public interface OfferService {
 
     void createOffer(OfferDto offerDto);
     void deleteOffer(Long id) ;
-    void updateOffer(Long id, OfferDto offerDto);
+    void updateFullOffer(Long id, OfferDto offerDto);
     List<OfferDto> getAllOffersByEventId(Long id);
     OfferDto getOfferById(Long id);
+    void updateOfferWithoutWeekSchedule(Long id, OfferDto offerDto);
+
 }
