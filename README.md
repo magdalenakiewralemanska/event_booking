@@ -32,7 +32,7 @@ In the future, it is also planned to create such functionalities as:
 5.	creating the ability to filter searched offers taking into account various search criteria,
 6.	expanding the user account by adding the ability to invite selected people to participate in a selected event.
 
-### Technologies
+# Technologies:
 ***
 <div align="center">
 	<code><img height="50" src="https://user-images.githubusercontent.com/25181517/192108890-200809d1-439c-4e23-90d3-b090cf9a4eea.png" alt="InteliJ" title="InteliJ" /></code>
